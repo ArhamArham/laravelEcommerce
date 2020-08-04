@@ -23,7 +23,15 @@
       </div>
       <div class="modal-body">
         <form action="" method="post" id="formsubmit">
-          <div id="formData"></div>
+          <div id="formData">
+            <div class="selDiv">
+              <select class="opts">
+                <option selected value="DEFAULT">Default</option>
+                <option value="new">new</option>
+                <option value="car">car</option>
+              </select>
+            </div>
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <input type="submit" value="Submit">
@@ -146,7 +154,12 @@ $(document).ready(function(){
   $(".model").click(function(){
     $('#exampleModalCenter').modal('show');
     var data=this.id.split("+");
-    $('#formData').html(data[0]);
+    // $('#formData').html(data[0]);
+    var $select = $('.selDiv .opts');
+    $select.children().filter(function(){
+	    return this.text == data[0];
+    }).prop('selected', true);
+
     $('#formsubmit').attr('action',data[1])
     console.log(data);
   });
